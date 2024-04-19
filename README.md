@@ -80,6 +80,7 @@ Dirty attributes are also implemented. For example:
 ```ruby
 user.push_comments_notifications_settings # => false
 user.push_comments_notifications_settings = true # => true
+user.push_comments_notifications_settings_was # => false
 user.push_comments_notifications_settings_changes # => { false => true }
 user.push_comments_notifications_settings_changed? # => true
 ```
