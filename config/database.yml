@@ -1,0 +1,17 @@
+sqlite:
+  adapter: sqlite3
+  database: ":memory:"
+
+mysql:
+  adapter: mysql2
+  database: active_record_deepstore_test
+  username: root
+  password:
+
+postgresql:
+  adapter: postgresql
+  database: active_record_deepstore_test
+  username: postgres
+  password:
+  host: localhost
+  port: 5432
