@@ -28,16 +28,11 @@ jobs:
     - name: Install PostgreSQL client
       run: |
         sudo apt-get -yqq install libpq-dev
-
-    - name: Set up PostgreSQL
-      uses: postgresql/setup-postgres@v2
-      with:
-        postgresql-version: '13'
-        postgresql-password: postgres
+        sudo apt install postgresql
 
     - name: Create database and schema
       run: |
-        psql -U postgres -c 'CREATE DATABASE postgres;'
+        psql -U postgres -c 'CREATE DATABASE postgres; CREATE USER postgres WITH PASSWORD 'postgres'; GRANT ALL PRIVILEGES ON DATABASE postgres TO postgres;'
 
     - name: Run the default task with postgresl
       env:
