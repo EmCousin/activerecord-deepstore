@@ -22,7 +22,7 @@ module ActiveRecord
       setup do
         @settings_hash = { notifications: { email: false, push: true }, usage_count: 42 }
 
-        DatabaseHelper.create_database("active_record_deepstore", adapter: ENV.fetch("DATABASE_ADAPTER", "postgresql"))
+        DatabaseHelper.create_database("active_record_deepstore", adapter: ENV.fetch("DATABASE_ADAPTER", ENV.fetch("DATABASE_ADAPTER", "postgresql")))
         unless ActiveRecord::Migration.table_exists? :users
           ActiveRecord::Migration.create_table :users do |t|
             t.string :name, null: false
