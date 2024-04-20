@@ -49,22 +49,19 @@ class User < ActiveRecord::Base
 end
 ```
 
-This implementation provides the following methods:
+This implementation provides with an accessor for every level of the provider hash:
 
-- `user.notifications_settings`
-- `user.notifications_settings=`
-- `user.posts_notifications_settings`
-- `user.posts_notifications_settings=`
-- `user.push_posts_notifications_settings`
-- `user.push_posts_notifications_settings=`
-- `user.email_posts_notifications_settings`
-- `user.email_posts_notifications_settings=`
-- `user.comments_notifications_settings`
-- `user.comments_notifications_settings=`
-- `user.push_comments_notifications_settings`
-- `user.push_comments_notifications_settings=`
-- `user.email_comments_notifications_settings`
-- `user.email_comments_notifications_settings=`
+```ruby
+user.notifications_settings # => { posts: { push: true, email: true }, comments: { push: true, email: false } }
+user.posts_notifications_settings # => { push: true, email: true }
+user.push_posts_notifications_settings # => true
+user.email_posts_notifications_settings # => true
+user.comments_notifications_settings # => { push: true, email: false }
+user.push_comments_notifications_settings # => true
+user.email_comments_notifications_settings # => false
+```
+
+#### Automatic typecasting
 
 Writer methods automatically cast the value to the type the default values belong to. For example:
 
@@ -75,7 +72,9 @@ user.push_comments_notifications_settings = "0" # => "0"
 user.push_comments_notifications_settings # => false
 ```
 
-Dirty attributes are also implemented. For example:
+#### Tracking value changes
+
+Dirty attributes are implemented for every accessor. For example:
 
 ```ruby
 user.push_comments_notifications_settings # => false
@@ -85,12 +84,26 @@ user.push_comments_notifications_settings_changes # => { false => true }
 user.push_comments_notifications_settings_changed? # => true
 ```
 
-Ensure that `ActiveSupport::HashWithIndifferentAccess` is allowed in Psych for the `accessor_name` to be serialized properly:
+#### Accessing default values
+
+You can access the default value of every accessor at anytime by calling the associated `default_#{accessor_name}` method:
 
 ```ruby
-Rails.application.config.active_record.yaml_column_permitted_classes = [
-  ActiveSupport::HashWithIndifferentAccess
-]
+user.push_comments_notifications_settings # => false
+user.update! push_comments_notifications_settings: true
+user.push_comments_notifications_settings # => true
+user.default_push_comments_notifications_settings #=> false
+```
+
+#### Resetting to default values
+
+You can reset every accessor to its default value  at anytime by calling the associated `reset_#{accessor_name}` method:
+
+```ruby
+user.push_comments_notifications_settings # => false
+user.push_comments_notifications_settings # => true
+user.reset_push_comments_notifications_settings
+user.push_comments_notifications_settings # => false
 ```
 
 ## Contributing
