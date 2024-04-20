@@ -37,7 +37,6 @@ jobs:
 
     - name: Create database and schema
       run: |
-        sudo -u postgres psql -c 'CREATE DATABASE IF NOT EXISTS postgres;'
         sudo -u postgres psql -c 'CREATE USER postgres WITH PASSWORD postgres;'
         sudo -u postgres psql -c 'GRANT ALL PRIVILEGES ON DATABASE postgres TO postgres;'
 
