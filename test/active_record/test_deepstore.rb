@@ -146,6 +146,52 @@ module ActiveRecord
         @emmanuel.usage_count_settings = "invalid value"
         assert_equal 0, @emmanuel.usage_count_settings
       end
+
+      test "reading default attribute values" do
+        @emmanuel.settings = { notifications: { email: true, push: false }, usage_count: 43 }
+
+        assert_equal({ notifications: { email: true, push: false }, usage_count: 43 }.with_indifferent_access, @emmanuel.settings)
+        assert_equal({ notifications: { email: false, push: true }, usage_count: 42 }.with_indifferent_access, @emmanuel.default_settings)
+
+        assert_equal({ email: true, push: false }.with_indifferent_access, @emmanuel.notifications_settings)
+        assert_equal({ email: false, push: true }.with_indifferent_access, @emmanuel.default_notifications_settings)
+
+        assert_equal true, @emmanuel.email_notifications_settings
+        assert_equal false, @emmanuel.default_email_notifications_settings
+
+        assert_equal false, @emmanuel.push_notifications_settings
+        assert_equal true, @emmanuel.default_push_notifications_settings
+
+        assert_equal 43, @emmanuel.usage_count_settings
+        assert_equal 42, @emmanuel.default_usage_count_settings
+      end
+
+      test "resetting values" do
+        @emmanuel.settings = { notifications: { email: true, push: false }, usage_count: 43 }
+        assert_equal({ notifications: { email: true, push: false }, usage_count: 43 }.with_indifferent_access, @emmanuel.settings)
+        @emmanuel.reset_settings
+        assert_equal({ notifications: { email: false, push: true }, usage_count: 42 }.with_indifferent_access, @emmanuel.settings)
+
+        @emmanuel.notifications_settings = { email: true, push: false }
+        assert_equal({ email: true, push: false }.with_indifferent_access, @emmanuel.notifications_settings)
+        @emmanuel.reset_notifications_settings!
+        assert_equal({ email: false, push: true }.with_indifferent_access, @emmanuel.notifications_settings)
+
+        @emmanuel.email_notifications_settings = true
+        assert_equal true, @emmanuel.email_notifications_settings
+        @emmanuel.reset_email_notifications_settings
+        assert_equal false, @emmanuel.email_notifications_settings
+
+        @emmanuel.push_notifications_settings = false
+        assert_equal false, @emmanuel.push_notifications_settings
+        @emmanuel.reset_push_notifications_settings
+        assert_equal true, @emmanuel.push_notifications_settings
+
+        @emmanuel.usage_count_settings = 44
+        assert_equal 44, @emmanuel.usage_count_settings
+        @emmanuel.reset_usage_count_settings
+        assert_equal 42, @emmanuel.usage_count_settings
+      end
     end
   end
 end

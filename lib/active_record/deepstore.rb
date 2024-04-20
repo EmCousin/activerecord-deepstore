@@ -67,7 +67,9 @@ module ActiveRecord
 
       define_method(:"default_#{accessor_name}") { payload.try(:with_indifferent_access) || payload }
 
-      define_method(:"reset_#{accessor_name}!") { update(accessor_name => payload) }
+      define_method(:"reset_#{accessor_name}") { assign_attributes(accessor_name => send(:"default_#{accessor_name}")) }
+
+      define_method(:"reset_#{accessor_name}!") { update(accessor_name => send(:"default_#{accessor_name}")) }
 
       define_method(:"#{accessor_name}_changes") do
         old_value = send(:"#{accessor_name}_was")
