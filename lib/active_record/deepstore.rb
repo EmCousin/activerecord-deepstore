@@ -52,7 +52,7 @@ module ActiveRecord
     def deep_store(accessor_name, payload, suffix: true, column_required: true)
       accessor_name = accessor_name.to_s.parameterize.underscore
 
-      raise Error, "Deep store '#{accessor_name}' is already declared" if @deep_stores.include?(accessor_name)
+      raise Error, "Deep store '#{accessor_name}' is already declared" if deep_stores.include?(accessor_name)
 
       @deep_stores << accessor_name
 
