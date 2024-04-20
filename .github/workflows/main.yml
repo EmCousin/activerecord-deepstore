@@ -36,10 +36,8 @@ jobs:
         sudo systemctl enable postgresql
 
     - name: Create database and schema
-      env:
-        PGPASSWORD: postgres
       run: |
-        psql -U postgres -c 'CREATE DATABASE postgres; CREATE USER postgres WITH PASSWORD 'postgres'; GRANT ALL PRIVILEGES ON DATABASE postgres TO postgres;'
+        psql -U root -c 'CREATE DATABASE postgres; CREATE USER postgres WITH PASSWORD 'postgres'; GRANT ALL PRIVILEGES ON DATABASE postgres TO postgres;'
 
     - name: Run the default task with postgresl
       env:
