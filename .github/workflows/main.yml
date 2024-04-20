@@ -29,6 +29,16 @@ jobs:
       run: |
         sudo apt-get -yqq install libpq-dev
 
+    - name: Set up PostgreSQL
+      uses: postgresql/setup-postgres@v2
+      with:
+        postgresql-version: '13'
+        postgresql-password: postgres
+
+    - name: Create database and schema
+      run: |
+        psql -U postgres -c 'CREATE DATABASE postgres;'
+
     - name: Run the default task with postgresl
       env:
         DATABASE_ADAPTER: postgresql
