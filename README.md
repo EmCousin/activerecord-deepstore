@@ -61,6 +61,13 @@ user.push_comments_notifications_settings # => true
 user.email_comments_notifications_settings # => false
 ```
 
+You can list all the generated accessors by calling `deep_stored_accessors` on the model `User`:
+
+```ruby
+User.deep_stored_accessors
+# => ["notifications_settings", "posts_notifications_settings", "push_posts_notifications_settings", [...], "email_comments_notifications_settings"]
+```
+
 #### Automatic typecasting
 
 Writer methods automatically cast the value to the type the default values belong to. For example:

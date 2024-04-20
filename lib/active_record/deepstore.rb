@@ -9,6 +9,8 @@ module ActiveRecord
     # Raised when an error occurs in the ActiveRecord::Deepstore module.
     class Error < StandardError; end
 
+    attr_reader :deep_stored_accessors
+
     # Retrieves or initializes the array containing names of attributes declared as deep stores.
     #
     # @return [Array<String>] The array containing names of deep stores.

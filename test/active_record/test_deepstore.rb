@@ -43,6 +43,10 @@ module ActiveRecord
         DatabaseHelper.drop_database("active_record_deepstore_test", adapter: ENV.fetch("DATABASE_ADAPTER", "postgresql"))
       end
 
+      test "Listing all generated accessors" do
+        assert_equal(%w[notifications_settings email_notifications_settings push_notifications_settings usage_count_settings], User.deep_stored_accessors)
+      end
+
       test "reading deep store attributes through accessors" do
         assert_equal({ notifications: { email: false, push: true }, usage_count: 42 }.with_indifferent_access, @emmanuel.settings)
         assert_equal({ email: false, push: true }.with_indifferent_access, @emmanuel.notifications_settings)
