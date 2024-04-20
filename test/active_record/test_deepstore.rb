@@ -40,7 +40,7 @@ module ActiveRecord
 
       teardown do
         ActiveRecord::Migration.drop_table(:users) if ActiveRecord::Migration.table_exists?(:users)
-        DatabaseHelper.drop_database("active_record_deepstore_test")
+        DatabaseHelper.drop_database("active_record_deepstore_test", adapter: ENV.fetch("DATABASE_ADAPTER", "postgresql"))
       end
 
       test "reading deep store attributes through accessors" do
