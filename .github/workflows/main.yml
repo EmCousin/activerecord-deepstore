@@ -44,7 +44,7 @@ jobs:
         DATABASE_ADAPTER: postgresql
         PGHOST: localhost
         PGUSER: postgres
-        PGPASSWORD: postgres
+        PGPASSWORD: ""
         RAILS_ENV: test
       run: bundle exec rake
 
