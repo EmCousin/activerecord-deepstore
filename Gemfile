@@ -5,6 +5,7 @@ source "https://rubygems.org"
 # Specify your gem's dependencies in activerecord-deepstore.gemspec
 gemspec
 
+gem "brakeman", "~> 6.1"
 gem "minitest", "~> 5.0"
 # gem "mysql2", "~> 0.5.2"
 gem "pg", ">= 0.18", "< 2.0"

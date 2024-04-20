@@ -1,4 +1,4 @@
-name: Ruby
+name: Tests - Postgres
 
 on:
   push:
@@ -47,10 +47,4 @@ jobs:
         PGUSER: postgres
         PGPASSWORD: postgres
         RAILS_ENV: test
-      run: bundle exec rake
-
-    - name: Run the default task with sqlite3
-      env:
-        DATABASE_ADAPTER: sqlite3
-        RAILS_ENV: test
-      run: bundle exec rake
+      run: bundle exec rake test

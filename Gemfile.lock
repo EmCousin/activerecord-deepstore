@@ -27,6 +27,8 @@ GEM
     ast (2.4.2)
     base64 (0.2.0)
     bigdecimal (3.1.7)
+    brakeman (6.1.2)
+      racc
     concurrent-ruby (1.2.3)
     connection_pool (2.4.1)
     drb (2.2.1)
@@ -73,6 +75,7 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord-deepstore!
+  brakeman (~> 6.1)
   minitest (~> 5.0)
   pg (>= 0.18, < 2.0)
   rake (~> 13.0)
