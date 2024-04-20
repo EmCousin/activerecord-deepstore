@@ -100,10 +100,17 @@ user.default_push_comments_notifications_settings #=> false
 You can reset every accessor to its default value  at anytime by calling the associated `reset_#{accessor_name}` method:
 
 ```ruby
+# When the changes are not persisted
 user.push_comments_notifications_settings # => false
-user.push_comments_notifications_settings # => true
+user.push_comments_notifications_settings = true
 user.reset_push_comments_notifications_settings
 user.push_comments_notifications_settings # => false
+
+# When the changes are persisted
+user.update! push_comments_notifications_settings: true
+user.push_comments_notifications_settings # => true
+user.reset_push_comments_notifications_settings!
+user.reload.push_comments_notifications_settings # => false
 ```
 
 ## Contributing
