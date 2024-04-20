@@ -30,6 +30,11 @@ jobs:
         sudo apt-get -yqq install libpq-dev
         sudo apt install postgresql
 
+    - name: Start PostgreSQL
+      run: |
+        sudo systemctl start postgresql
+        sudo systemctl enable postgresql
+
     - name: Create database and schema
       run: |
         psql -U postgres -c 'CREATE DATABASE postgres; CREATE USER postgres WITH PASSWORD 'postgres'; GRANT ALL PRIVILEGES ON DATABASE postgres TO postgres;'
