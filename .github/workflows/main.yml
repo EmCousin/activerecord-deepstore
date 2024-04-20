@@ -37,7 +37,7 @@ jobs:
 
     - name: Create database and schema
       run: |
-        psql -U postgres -c 'CREATE DATABASE postgres; CREATE USER postgres WITH PASSWORD 'postgres'; GRANT ALL PRIVILEGES ON DATABASE postgres TO postgres;'
+        psql -U postgres -p postgres -c 'CREATE DATABASE postgres; CREATE USER postgres WITH PASSWORD 'postgres'; GRANT ALL PRIVILEGES ON DATABASE postgres TO postgres;'
 
     - name: Run the default task with postgresl
       env:
