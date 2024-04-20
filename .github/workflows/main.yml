@@ -37,7 +37,7 @@ jobs:
 
     - name: Create database and schema
       run: |
-        sudo -u postgres psql -c 'CREATE DATABASE postgres; CREATE USER postgres WITH PASSWORD 'postgres'; GRANT ALL PRIVILEGES ON DATABASE postgres TO postgres;'
+        sudo -u postgres psql -c 'CREATE DATABASE postgres; CREATE USER postgres WITH PASSWORD postgres; GRANT ALL PRIVILEGES ON DATABASE postgres TO postgres;'
 
     - name: Run the default task with postgresl
       env:
