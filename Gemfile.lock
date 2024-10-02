@@ -1,9 +1,9 @@
 PATH
   remote: .
   specs:
-    activerecord-deepstore (0.1.0)
-      activerecord (~> 7.0)
-      activesupport (~> 7.0)
+    activerecord-deepstore (0.1.1)
+      activerecord (>= 7.0)
+      activesupport (>= 7.0)
 
 GEM
   remote: https://rubygems.org/
