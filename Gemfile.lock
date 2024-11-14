@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    activerecord-deepstore (0.1.1)
+    activerecord-deepstore (0.1.2)
       activerecord (>= 7.0)
       activesupport (>= 7.0)
 
@@ -71,6 +71,7 @@ GEM
 
 PLATFORMS
   arm64-darwin-22
+  arm64-darwin-23
   x86_64-linux
 
 DEPENDENCIES
