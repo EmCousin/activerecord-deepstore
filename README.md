@@ -7,7 +7,7 @@ ActiveRecord-Deepstore is a Ruby gem that extends ActiveRecord models with addit
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'activerecord-deepstore', require: 'active_record/deepstore'
+gem 'activerecord-deepstore'
 ```
 
 And then execute:
